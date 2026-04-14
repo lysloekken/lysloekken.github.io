@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lysløkken — Jord med retning</title>
+  <meta name="description" content="Lysløkken er et regenerativt naturprojekt på Helgenæs, Djursland. 35,9 hektar med direkte adgang til havet, biodiversitetsarealer og en bæredygtig plantage under opbygning.">
+  <meta property="og:title" content="Lysløkken — Jord med retning">
+  <meta property="og:description" content="Et regenerativt naturprojekt på Helgenæs med udsigt over Aarhus Bugt.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --lys-moss: #4A5240;
+      --lys-sage: #8A9A7A;
+      --lys-birch: #D8CDB8;
+      --lys-stone: #B8AFA0;
+      --lys-sky: #C8D4D8;
+      --lys-coast: #7A9898;
+      --lys-cream: #F4F0E8;
+      --lys-dark: #2A2E24;
+      --lys-amber: #C8A05A;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--lys-cream);
+      color: var(--lys-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      border-bottom: 0.5px solid var(--lys-stone);
+      background: var(--lys-cream);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--lys-dark);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-logo span { color: var(--lys-sage); font-style: italic; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lys-moss);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--lys-moss);
+      transition: all 0.25s;
+    }
+
+    /* ── PAGE SYSTEM ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 3rem;
+      background: linear-gradient(155deg, #C8D8C0 0%, #A8B898 30%, #7A9070 60%, #4A5240 100%);
+      overflow: hidden;
+    }
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-stats {
+      position: absolute;
+      top: 3rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      text-align: right;
+    }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.67rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.2rem;
+    }
+    .hero-location {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.2rem;
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.06;
+      color: #fff;
+      max-width: 680px;
+      margin-bottom: 1.6rem;
+    }
+    .hero-headline em { font-style: italic; color: rgba(255,255,255,0.82); }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.8rem;
+    }
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      border: 1px solid rgba(255,255,255,0.55);
+      color: #fff;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .btn-dark {
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      background: var(--lys-moss);
+      color: #fff;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: var(--lys-dark); }
+
+    /* ── SECTIONS GENERAL ── */
+    .section-label {
+      font-size: 0.67rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--lys-sage);
+      margin-bottom: 1.1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--lys-dark);
+      max-width: 620px;
+      margin-bottom: 1.4rem;
+    }
+    .section-body {
+      font-size: 0.93rem;
+      line-height: 1.88;
+      color: var(--lys-moss);
+      max-width: 560px;
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--lys-dark);
+      padding: 4.5rem 3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 5rem;
+    }
+    .intro-strip-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--lys-birch);
+      line-height: 1.55;
+      flex: 1;
+      max-width: 460px;
+    }
+    .intro-strip-text {
+      font-size: 0.88rem;
+      line-height: 1.92;
+      color: var(--lys-stone);
+      flex: 1;
+    }
+
+    /* ── PILLARS ── */
+    .pillars { background: #fff; padding: 5.5rem 3rem; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .pillar { border-top: 1px solid var(--lys-stone); padding-top: 1.5rem; }
+    .pillar-icon { width: 34px; height: 34px; margin-bottom: 1rem; }
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--lys-dark);
+      margin-bottom: 0.7rem;
+    }
+    .pillar-text { font-size: 0.84rem; line-height: 1.88; color: var(--lys-moss); }
+
+    /* ── LAND SPLIT ── */
+    .land-section { display: grid; grid-template-columns: 1fr 1fr; }
+    .land-visual {
+      background: linear-gradient(200deg, var(--lys-sky) 0%, var(--lys-coast) 50%, var(--lys-moss) 100%);
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .land-coordinates {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.6);
+    }
+    .land-content {
+      background: var(--lys-cream);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ── PROJECTS DARK ── */
+    .projects-section { background: var(--lys-dark); padding: 5.5rem 3rem; }
+    .projects-section .section-title { color: var(--lys-birch); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      margin-top: 3rem;
+      background: #3a3f30;
+    }
+    .project-card {
+      background: #1e2218;
+      padding: 2.8rem;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .project-card:hover { background: #252a1e; }
+    .project-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--lys-sage);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--lys-birch);
+      margin-bottom: 0.8rem;
+    }
+    .project-text { font-size: 0.84rem; line-height: 1.88; color: var(--lys-stone); }
+
+    /* ── VISIT ── */
+    .visit-section {
+      padding: 6rem 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .visit-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--lys-dark);
+      margin-bottom: 1.4rem;
+    }
+    .visit-tagline em { font-style: italic; color: var(--lys-coast); }
+    .visit-list { list-style: none; margin-top: 2rem; }
+    .visit-list li {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--lys-moss);
+      padding: 0.75rem 0;
+      border-bottom: 0.5px solid var(--lys-birch);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .visit-list li::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--lys-sage);
+      flex-shrink: 0;
+    }
+    .visit-aside {
+      border-left: 1px solid var(--lys-stone);
+      padding-left: 3rem;
+    }
+    .visit-aside-label {
+      font-size: 0.67rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lys-sage);
+      margin-bottom: 1rem;
+    }
+    .visit-aside-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--lys-dark);
+      line-height: 1.65;
+    }
+
+    /* ── ABOUT PAGE ── */
+    .about-hero {
+      background: linear-gradient(135deg, #8A9A7A 0%, #4A5240 100%);
+      padding: 6rem 3rem 5rem;
+    }
+    .about-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      color: #fff;
+      max-width: 680px;
+      line-height: 1.15;
+    }
+    .about-body {
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .about-para { font-size: 0.93rem; line-height: 1.92; color: var(--lys-moss); }
+    .about-para + .about-para { margin-top: 1.5rem; }
+    .about-facts { display: flex; flex-direction: column; gap: 2rem; }
+    .fact { border-left: 2px solid var(--lys-sage); padding-left: 1.2rem; }
+    .fact-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--lys-dark);
+    }
+    .fact-label { font-size: 0.78rem; color: var(--lys-stone); margin-top: 0.15rem; }
+
+    /* ── VISION PAGE ── */
+    .vision-section { padding: 5.5rem 3rem; background: #fff; }
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .principle { padding: 2rem; background: var(--lys-cream); }
+    .principle-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--lys-dark);
+      margin-bottom: 0.7rem;
+    }
+    .principle-text { font-size: 0.83rem; line-height: 1.88; color: var(--lys-moss); }
+
+    /* ── PROJECTS PAGE ── */
+    .projects-page { background: var(--lys-dark); min-height: 100vh; padding: 5.5rem 3rem; }
+    .projects-page .section-title { color: var(--lys-birch); }
+    .projects-page-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      margin-top: 3.5rem;
+      background: #3a3f30;
+    }
+    .project-card-lg {
+      background: #1e2218;
+      padding: 3rem;
+      transition: background 0.25s;
+    }
+    .project-card-lg:hover { background: #252a1e; }
+
+    /* ── VISIT PAGE ── */
+    .visit-hero {
+      background: linear-gradient(160deg, var(--lys-sky) 0%, var(--lys-coast) 60%, var(--lys-moss) 100%);
+      padding: 6rem 3rem 5rem;
+    }
+    .visit-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      color: #fff;
+      max-width: 620px;
+      line-height: 1.15;
+    }
+    .visit-body {
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .visit-card {
+      padding: 2rem;
+      background: #fff;
+      border: 0.5px solid var(--lys-stone);
+      margin-top: 2rem;
+    }
+    .visit-card-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--lys-dark);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── CONTACT PAGE ── */
+    .contact-section {
+      padding: 5.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+    .contact-form-group { margin-bottom: 1.5rem; }
+    .contact-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lys-sage);
+      margin-bottom: 0.5rem;
+    }
+    .contact-input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: transparent;
+      border: 0.5px solid var(--lys-stone);
+      color: var(--lys-dark);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .contact-input:focus { border-color: var(--lys-sage); }
+    textarea.contact-input { min-height: 130px; resize: vertical; }
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--lys-dark);
+      margin-bottom: 1.4rem;
+    }
+    .contact-info p { font-size: 0.9rem; line-height: 1.9; color: var(--lys-moss); margin-bottom: 1.5rem; }
+    .contact-detail-block { margin-bottom: 1.8rem; }
+    .contact-detail-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lys-sage);
+      margin-bottom: 0.35rem;
+    }
+    .contact-detail-value { font-size: 0.84rem; color: var(--lys-stone); line-height: 1.8; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--lys-dark);
+      padding: 3.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 0.5px solid #3a3f30;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--lys-birch);
+    }
+    .footer-logo span { font-style: italic; color: var(--lys-sage); }
+    .footer-tagline { font-size: 0.72rem; color: var(--lys-stone); margin-top: 0.4rem; letter-spacing: 0.08em; }
+    .footer-addr { font-size: 0.76rem; color: var(--lys-stone); line-height: 1.9; text-align: right; }
+    .footer-addr a { color: var(--lys-sage); text-decoration: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--lys-cream); border-bottom: 0.5px solid var(--lys-stone); padding: 1.5rem; gap: 1.2rem; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-hamburger { display: flex; }
+      .hero { padding: 2.5rem 1.5rem; min-height: 85vh; }
+      .hero-stats { position: static; text-align: left; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+      .hero-headline { font-size: 2.8rem; }
+      .intro-strip { flex-direction: column; gap: 2rem; padding: 3rem 1.5rem; }
+      .pillars { padding: 3.5rem 1.5rem; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .land-section { grid-template-columns: 1fr; }
+      .land-visual { min-height: 260px; }
+      .land-content { padding: 3rem 1.5rem; }
+      .projects-section { padding: 3.5rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .visit-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; }
+      .visit-aside { border-left: none; border-top: 0.5px solid var(--lys-stone); padding-left: 0; padding-top: 2rem; }
+      .about-body { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; }
+      .about-hero { padding: 4rem 1.5rem 3rem; }
+      .vision-section { padding: 3.5rem 1.5rem; }
+      .principles { grid-template-columns: 1fr; }
+      .projects-page { padding: 3.5rem 1.5rem; }
+      .projects-page-grid { grid-template-columns: 1fr; }
+      .visit-hero { padding: 4rem 1.5rem 3rem; }
+      .visit-body { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; }
+      .contact-section { grid-template-columns: 1fr; gap: 3rem; padding: 3.5rem 1.5rem; }
+      footer { flex-direction: column; gap: 2rem; padding: 3rem 1.5rem; }
+      .footer-addr { text-align: left; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" role="button" tabindex="0">Lys<span>løkken</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" data-page="home">Forside</a></li>
+    <li><a onclick="showPage('about')" data-page="about">Om stedet</a></li>
+    <li><a onclick="showPage('vision')" data-page="vision">Visionen</a></li>
+    <li><a onclick="showPage('projects')" data-page="projects">Projekter</a></li>
+    <li><a onclick="showPage('visit')" data-page="visit">Besøg</a></li>
+    <li><a onclick="showPage('contact')" data-page="contact">Kontakt</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-texture"></div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">35,9</div>
+        <div class="hero-stat-label">hektar land</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Helgenæs</div>
+        <div class="hero-stat-label">Djursland, Danmark</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">↗</div>
+        <div class="hero-stat-label">Udsigt over Aarhus Bugt</div>
+      </div>
+    </div>
+    <div class="hero-location">Sletterhagevej 8 · Helgenæs · Djursland</div>
+    <h1 class="hero-headline">Et sted, hvor<br>naturen <em>finder</em><br>sin vej tilbage</h1>
+    <p class="hero-sub">Lysløkken er et levende naturprojekt på Helgenæs — et sted under forvandling, fra traditionelt landbrug til et regenerativt land med plads til biodiversitet, produktion og menneskelig oplevelse.</p>
+    <a class="btn-outline" onclick="showPage('about')">Lær stedet at kende</a>
+  </div>
+
+  <div class="intro-strip">
+    <div class="intro-strip-quote">"Vi dyrker ikke kun jord. Vi passer på det, der vokser, når vi træder et skridt tilbage."</div>
+    <div class="intro-strip-text">Lysløkken er ikke en farm i traditionel forstand. Det er et forsøg på at forstå, hvad der sker, når et stykke dansk kystland får lov at blive noget mere end marker og stald — et sted med nødder, vilde zoner, dyr på græs og vand i bevægelse.</div>
+  </div>
+
+  <div class="pillars">
+    <div class="section-label">Tre spor</div>
+    <div class="section-title">Hvad vi arbejder med</div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="22" r="8" stroke="#8A9A7A" stroke-width="1"/>
+          <path d="M18 14 C18 8 12 4 12 4 C12 4 18 6 20 12" stroke="#8A9A7A" stroke-width="1" fill="none"/>
+          <path d="M18 14 C18 8 24 4 24 4 C24 4 18 6 16 12" stroke="#8A9A7A" stroke-width="1" fill="none"/>
+          <line x1="18" y1="30" x2="18" y2="34" stroke="#8A9A7A" stroke-width="1"/>
+        </svg>
+        <div class="pillar-title">Regenerativ dyrkning</div>
+        <div class="pillar-text">En flerårig nød- og frugtplantage er undervejs — hasselnødder, bær og robuste frugttræer, der forbedrer jordens liv og giver rigtig lokal mad.</div>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 28 Q10 18 18 20 Q26 22 32 14" stroke="#8A9A7A" stroke-width="1" fill="none"/>
+          <circle cx="8" cy="26" r="2" fill="#8A9A7A" opacity="0.5"/>
+          <circle cx="20" cy="19" r="1.5" fill="#8A9A7A" opacity="0.5"/>
+          <circle cx="30" cy="15" r="2" fill="#8A9A7A" opacity="0.5"/>
+          <path d="M6 32 Q12 26 22 28 Q28 30 34 24" stroke="#7A9898" stroke-width="0.5" fill="none" opacity="0.6"/>
+        </svg>
+        <div class="pillar-title">Biodiversitet</div>
+        <div class="pillar-text">Dødt ved, stendiger, vilde zoner og vandhuller skaber livsmuligheder for insekter, fugle og planter, der har haft trange kår i det intensivt dyrkede åbne land.</div>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="18" cy="24" rx="12" ry="4" stroke="#8A9A7A" stroke-width="1"/>
+          <path d="M6 24 Q6 16 18 12 Q30 16 30 24" stroke="#8A9A7A" stroke-width="1" fill="none"/>
+          <line x1="12" y1="20" x2="12" y2="14" stroke="#8A9A7A" stroke-width="0.8"/>
+          <line x1="18" y1="22" x2="18" y2="12" stroke="#8A9A7A" stroke-width="0.8"/>
+          <line x1="24" y1="20" x2="24" y2="15" stroke="#8A9A7A" stroke-width="0.8"/>
+        </svg>
+        <div class="pillar-title">Oplevelse og besøg</div>
+        <div class="pillar-text">Vi åbner stedet for nysgerrige gæster — pluk-selv, naturvandringer og fremtidige overnatningsmuligheder i et landskab, der hele tiden er i bevægelse.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="land-section">
+    <div class="land-visual">
+      <svg viewBox="0 0 500 420" width="100%" height="100%" style="position:absolute;inset:0" preserveAspectRatio="xMidYMid slice">
+        <rect width="500" height="420" fill="#7A9898" opacity="0.4"/>
+        <path d="M0 300 Q60 275 140 285 Q220 298 300 272 Q380 250 500 262 L500 420 L0 420Z" fill="#4A5240" opacity="0.45"/>
+        <path d="M0 330 Q80 310 180 320 Q280 332 380 308 Q440 296 500 310 L500 420 L0 420Z" fill="#2A2E24" opacity="0.5"/>
+        <ellipse cx="370" cy="130" rx="70" ry="55" fill="#8A9A7A" opacity="0.12"/>
+        <ellipse cx="370" cy="130" rx="42" ry="32" fill="#8A9A7A" opacity="0.1"/>
+        <path d="M80 200 Q140 178 175 196 Q198 210 172 222 Q135 238 78 215Z" fill="#8A9A7A" opacity="0.18"/>
+        <path d="M220 245 Q290 220 325 238 Q348 252 322 264 Q288 278 215 258Z" fill="#7A9898" opacity="0.2"/>
+        <path d="M50 260 Q100 252 130 260 Q150 268 130 274 Q100 280 48 270Z" fill="#8A9A7A" opacity="0.15"/>
+      </svg>
+      <div class="land-coordinates">55.9432° N · 10.5681° Ø</div>
+    </div>
+    <div class="land-content">
+      <div class="section-label">Landskabet</div>
+      <h2 class="section-title">Kyst, krat og åbent land</h2>
+      <p class="section-body">Lysløkken strækker sig fra landbrugsjord over naturarealer til direkte adgang til kysten ved Helgenæs. Havet er altid nær. Aarhus Bugt ligger som et stille lys i horisonten — og minder os om, at dette sted er del af noget større.</p>
+      <div style="margin-top: 2rem">
+        <a class="btn-dark" onclick="showPage('about')" style="font-size:0.72rem; padding: 0.75rem 2rem">Om ejendommen</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-section">
+    <div class="section-label">Igangværende arbejde</div>
+    <h2 class="section-title">Projekter på Lysløkken</h2>
+    <div class="projects-grid">
+      <div class="project-card" onclick="showPage('projects')">
+        <div class="project-num">01</div>
+        <div class="project-title">Nød- og frugtplantagen</div>
+        <div class="project-text">Hasselnødder, kirsebær, blommer og bær plantes i strukturer, der gavner jord, insekter og fremtidig produktion på én gang.</div>
+      </div>
+      <div class="project-card" onclick="showPage('projects')">
+        <div class="project-num">02</div>
+        <div class="project-title">Kragmose — vildzonerne</div>
+        <div class="project-text">Mosen og de beskyttede arealer er kernen i biodiversitetsarbejdet. Her er menneskehånden holdt tilbage og naturen sat fri.</div>
+      </div>
+      <div class="project-card" onclick="showPage('projects')">
+        <div class="project-num">03</div>
+        <div class="project-title">Vandhuller og vandveje</div>
+        <div class="project-text">Nye vandhuller forbinder naturens kredsløb — for frøer, vandinsekter, trækfugle og det mikrobielle liv i jordens lag.</div>
+      </div>
+      <div class="project-card" onclick="showPage('projects')">
+        <div class="project-num">04</div>
+        <div class="project-title">Græsning med lokale dyr</div>
+        <div class="project-text">I samarbejde med nærliggende landmænd afgræsses dele af ejendommen — en gammel metode i balance med stedet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="visit-section">
+    <div>
+      <div class="section-label">En invitation</div>
+      <h2 class="visit-tagline">Kom ud og se,<br>hvad der <em>spirer</em></h2>
+      <p class="section-body">Lysløkken er et sted i bevægelse — ikke et færdigt projekt, men en levende proces. Vi inviterer nysgerrige mennesker, familier og samarbejdspartnere til at følge med, komme forbi og bidrage.</p>
+      <ul class="visit-list">
+        <li>Pluk-selv ved sæsonens høst</li>
+        <li>Guidede naturvandringer</li>
+        <li>Fremtidige overnatningsmuligheder</li>
+        <li>Partnerskaber og samarbejdsprojekter</li>
+      </ul>
+    </div>
+    <div class="visit-aside">
+      <div class="visit-aside-label">Åbent for henvendelser</div>
+      <div class="visit-aside-quote">"Vi åbner gradvist. Følg med her, eller skriv til os — vi svarer altid."</div>
+      <div style="margin-top: 2rem; font-size: 0.8rem; color: var(--lys-stone); line-height: 1.85;">
+        Sletterhagevej 8<br>8420 Knebel, Helgenæs
+      </div>
+      <div style="margin-top: 1.8rem">
+        <a class="btn-dark" onclick="showPage('contact')" style="font-size:0.72rem; padding: 0.75rem 2rem">Skriv til os</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a><br>
+      <span style="opacity:0.35; font-size: 0.7rem">© 2025 Lysløkken</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div class="section-label" style="color: rgba(255,255,255,0.55)">Om stedet</div>
+    <h1 class="about-headline">Et stykke dansk kystland med lang hukommelse og nye drømme</h1>
+  </div>
+  <div class="about-body">
+    <div>
+      <p class="about-para">Lysløkken ligger på det smalle næs ved Helgenæs på Djursland — en halvø, der stikker ud i Kattegat og er omgivet af hav på tre sider. Herfra er der udsigt over Aarhus Bugt, og vejret mærkes tydeligt på kroppen hele året.</p>
+      <p class="about-para">Ejendommen på Sletterhagevej 8 tæller 35,9 hektar i alt — landbrugsjord, naturarealer og den beskyttede mose Kragmose, der er et af de mest levende stykker natur på stedet. Et stuehus på 160 m² og landbrugsbygninger på knap 770 m² danner rammerne for det daglige arbejde.</p>
+      <p class="about-para">Stedet er under forvandling. Det, der engang var traditionelt markbrug, bliver nu langsomt til noget andet — et sted, der producerer, men ikke på naturens bekostning. Et sted, der åbner sig for besøgende, men ikke mister sin ro.</p>
+      <div style="margin-top: 2.5rem">
+        <a class="btn-dark" onclick="showPage('vision')">Læs om visionen</a>
+      </div>
+    </div>
+    <div class="about-facts">
+      <div class="fact"><div class="fact-num">35,9 ha</div><div class="fact-label">Samlet areal — jord, natur og kyst</div></div>
+      <div class="fact"><div class="fact-num">160 m²</div><div class="fact-label">Stuehus med fremtidigt potentiale</div></div>
+      <div class="fact"><div class="fact-num">~770 m²</div><div class="fact-label">Landbrugsbygninger til nye formål</div></div>
+      <div class="fact"><div class="fact-num">Kragmose</div><div class="fact-label">Separat naturareal med høj biodiversitet</div></div>
+      <div class="fact"><div class="fact-num">Helgenæs</div><div class="fact-label">Djursland — direkte adgang til havet</div></div>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     VISION PAGE
+══════════════════════════════════════════ -->
+<div id="page-vision" class="page">
+  <div class="vision-section">
+    <div class="section-label">Visionen</div>
+    <h2 class="section-title" style="max-width: 720px">Ikke mere end nødvendigt. Ikke mindre end muligt.</h2>
+    <p class="section-body" style="max-width: 700px; margin-bottom: 3.5rem">Regenerativt landbrug handler ikke om at vende tilbage til noget gammelt. Det handler om at lytte til det, der faktisk virker — at dyrke jord på en måde, der giver mere tilbage, end den tager. Lysløkken arbejder ud fra det princip: hvert tiltag skal styrke det biologiske fundament, ikke tære på det.</p>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-title">Jordens sundhed</div>
+        <div class="principle-text">Sund jord med levende mikroliv er udgangspunktet for alt andet. Vi undgår pløjning, fremmer mykorrhiza og planteliv, der nærer mere end det udtager.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Mangfoldighed frem for monokultur</div>
+        <div class="principle-text">Plantagen er designet som et system med mange lag og mange arter — buske, træer, stauder og vilde zoner imellem, der giver hinanden støtte.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Vand i balance</div>
+        <div class="principle-text">Nye vandhuller og lavninger hjælper vand med at blive i landskabet og giver livsrum til en lang række organismer, der er presset i det intensivt dyrkede land.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Lokal forankring</div>
+        <div class="principle-text">Samarbejde med naboer, lokale landmænd og kommunen er ikke tillæg — det er en forudsætning. Lysløkken kan ikke stå alene.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Oplevelse som del af naturen</div>
+        <div class="principle-text">Mennesker, der besøger stedet, er ikke forstyrrelser. De er med til at bære projektet — og forhåbentlig med hjem igen med noget, de ikke vidste, de manglede.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Tålmodighed</div>
+        <div class="principle-text">Naturen har sin egen tidsskala. Vi planlægger i årtier, ikke kvartalstal. Det vigtigste arbejde sker under jord og i det stille.</div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PROJECTS PAGE
+══════════════════════════════════════════ -->
+<div id="page-projects" class="page">
+  <div class="projects-page">
+    <div class="section-label">Projekterne</div>
+    <h2 class="section-title">Det vi bygger, planter og passer</h2>
+    <div class="projects-page-grid">
+      <div class="project-card-lg">
+        <div class="project-num">01</div>
+        <div class="project-title">Nød- og frugtplantagen</div>
+        <div class="project-text">Kernen i produktionssiden er en flerårig plantage med hasselnødder, blåbær, hyldebær, slåen, mirabeller og kirsebær. Plantet i strukturer, der efterligner kantvegetation og naturlige skovbryn, giver de ikke blot afgrøder — de bygger levende hegn, jordforbedring og vindlæ op over tid. Vi kalder dette område <em style="color: var(--lys-sage)">Hassellunden</em>.</div>
+      </div>
+      <div class="project-card-lg">
+        <div class="project-num">02</div>
+        <div class="project-title">Kragmose — naturkernen</div>
+        <div class="project-text">Kragmose er et separat naturareal med høj beskyttelsesværdi. Her er fokus på ikke at forstyrre — men at støtte de naturlige processer: fjernelse af invasive arter, pleje af åbne vandflade og sikring af uforstyrrede zoner for fugle og padder. Mosen er det ældstes sted på ejendommen og fortjener den dybeste respekt.</div>
+      </div>
+      <div class="project-card-lg">
+        <div class="project-num">03</div>
+        <div class="project-title">Vandhuller og lavninger</div>
+        <div class="project-text">To til tre nye vandhuller planlægges i lavbundsarealer, der historisk har været vandfyldte. Vandets tilbagevenden bringer insekter, padder og fugle med sig — og hjælper med at regulere jordens vandbalance under tørkeperioder. Vi kalder dem samlet <em style="color: var(--lys-sage)">De tre kiler</em>.</div>
+      </div>
+      <div class="project-card-lg">
+        <div class="project-num">04</div>
+        <div class="project-title">Græsning i samarbejde</div>
+        <div class="project-text">I samarbejde med lokale landmænd afgræsses dele af ejendommen med kvæg og evt. heste. Roterende afgræsning holder arealerne åbne, skaber en mosaik af naturtyper og bidrager til jordlivet — uden at belaste det. Samarbejdet er en del af vores lokale forankring.</div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     VISIT PAGE
+══════════════════════════════════════════ -->
+<div id="page-visit" class="page">
+  <div class="visit-hero">
+    <div class="section-label" style="color: rgba(255,255,255,0.55)">Besøg og oplevelser</div>
+    <h1 class="visit-hero h1" style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; color:#fff; max-width:620px; line-height:1.15">Lysløkken er åben for dem, der kommer med åbne øjne</h1>
+  </div>
+  <div class="visit-body">
+    <div>
+      <p style="font-size:0.93rem; line-height:1.92; color:var(--lys-moss); margin-bottom:2rem">Besøg på Lysløkken er ikke en pakket turismeoplevelse — det er et møde med et sted i bevægelse. Vi inviterer gæster ind, når tidspunktet er rigtigt, og vi vil gerne vise, hvad der rent faktisk sker, når man arbejder med naturen frem for imod den.</p>
+      <div class="section-label">Hvad vi tilbyder</div>
+      <ul class="visit-list">
+        <li>Pluk-selv i sæsonen — bær, nødder og frugter</li>
+        <li>Guidede ture med fokus på natur og regenerativt landbrug</li>
+        <li>Åbne dage for skoler og grupper</li>
+        <li>Fremtidige overnatninger i stuehuset</li>
+        <li>Gårdbutik med lokale produkter (under opbygning)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-label">Praktisk</div>
+      <p style="font-size:0.88rem; line-height:1.9; color:var(--lys-moss)">Lysløkken er ikke åben for spontane besøg året rundt — men vi ønsker at være det mere og mere, efterhånden som projektet modnes. Tilmeld dig vores nyhedsbrev for at høre om åbne dage og sæsonhøst, eller skriv til os direkte.</p>
+      <div class="visit-card">
+        <div class="visit-card-quote">"Vi er et sted i start — og det er netop nu, det er mest interessant at komme."</div>
+        <div style="font-size:0.78rem; color:var(--lys-stone)">Sletterhagevej 8, 8420 Knebel · Helgenæs</div>
+      </div>
+      <div style="margin-top: 2rem">
+        <a class="btn-dark" onclick="showPage('contact')">Skriv til os</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-section">
+    <div>
+      <div class="section-label">Skriv til os</div>
+      <h2 class="section-title">Vi hører gerne fra dig</h2>
+      <form onsubmit="handleForm(event)">
+        <div class="contact-form-group">
+          <label class="contact-label" for="name">Navn</label>
+          <input type="text" id="name" class="contact-input" placeholder="Dit navn" required>
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-label" for="email">E-mail</label>
+          <input type="email" id="email" class="contact-input" placeholder="din@email.dk" required>
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-label" for="subject">Emne</label>
+          <input type="text" id="subject" class="contact-input" placeholder="Hvad handler din henvendelse om?">
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-label" for="message">Besked</label>
+          <textarea id="message" class="contact-input" placeholder="Skriv frit..." required></textarea>
+        </div>
+        <button type="submit" class="btn-dark">Send besked</button>
+        <div id="form-success" style="display:none; margin-top:1rem; font-size:0.85rem; color:var(--lys-sage)">Tak for din besked — vi vender tilbage snarest.</div>
+      </form>
+    </div>
+    <div class="contact-info">
+      <h3>Lysløkken er et åbent projekt</h3>
+      <p>Vi samarbejder med kommuner, fonde, lokale landmænd, naturorganisationer og alle, der er nysgerrige på regenerativt landbrug og biodiversitet. Skriv til os, hvis du vil vide mere, samarbejde eller bare besøge stedet.</p>
+      <div class="contact-detail-block">
+        <div class="contact-detail-label">Adresse</div>
+        <div class="contact-detail-value">Sletterhagevej 8<br>8420 Knebel, Helgenæs</div>
+      </div>
+      <div class="contact-detail-block">
+        <div class="contact-detail-label">E-mail</div>
+        <div class="contact-detail-value"><a href="mailto:kontakt@lysloekken.dk" style="color:var(--lys-sage); text-decoration:none">kontakt@lysloekken.dk</a></div>
+      </div>
+      <div class="contact-detail-block">
+        <div class="contact-detail-label">Samarbejde</div>
+        <div class="contact-detail-value">Vi er åbne for partnerskaber med kommuner, fonde og lokale aktører</div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div>
+      <div class="footer-logo">Lys<span>løkken</span></div>
+      <div class="footer-tagline">Helgenæs · Djursland · Danmark</div>
+    </div>
+    <div class="footer-addr">
+      Sletterhagevej 8 · 8420 Knebel<br>
+      <a href="mailto:kontakt@lysloekken.dk">kontakt@lysloekken.dk</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    const link = document.querySelector('.nav-links a[data-page="' + id + '"]');
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const nav = document.getElementById('navLinks');
+    nav.classList.remove('open');
+  }
+
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function handleForm(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav')) {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
